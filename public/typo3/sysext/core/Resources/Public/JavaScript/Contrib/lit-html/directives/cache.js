@@ -1,0 +1,6 @@
+define(["exports","../lit-html","../directive","../directive-helpers"],(function(exports,litHtml,directive,directiveHelpers){"use strict";
+/**
+	 * @license
+	 * Copyright 2017 Google LLC
+	 * SPDX-License-Identifier: BSD-3-Clause
+	 */const d=directive.directive(class extends directive.Directive{constructor(t){super(t),this._t=new WeakMap}render(t){return[t]}update(s,[e]){if(directiveHelpers.isTemplateResult(this.vt)&&(!directiveHelpers.isTemplateResult(e)||this.vt.strings!==e.strings)){const e=directiveHelpers.getCommittedValue(s).pop();let o=this._t.get(this.vt.strings);if(void 0===o){const s=document.createDocumentFragment();o=litHtml.render(litHtml.nothing,s),this._t.set(this.vt.strings,o)}directiveHelpers.setCommittedValue(o,[e]),directiveHelpers.insertPart(o,void 0,e),e.setConnected(!1)}if(directiveHelpers.isTemplateResult(e)){if(!directiveHelpers.isTemplateResult(this.vt)||this.vt.strings!==e.strings){const t=this._t.get(e.strings);if(void 0!==t){const i=directiveHelpers.getCommittedValue(t).pop();directiveHelpers.clearPart(s),directiveHelpers.insertPart(s,void 0,i),directiveHelpers.setCommittedValue(s,[i]),i.setConnected(!0)}}this.vt=e}else this.vt=void 0;return this.render(e)}});exports.cache=d,Object.defineProperty(exports,"__esModule",{value:!0})}));

@@ -1,0 +1,58 @@
+{
+    "name": "qbus/nginx-cache",
+    "type": "typo3-cms-extension",
+    "description": "NGINX Cache Manager for TYPO3",
+    "keywords": [
+        "TYPO3",
+        "extension"
+    ],
+    "homepage": "https://www.qbus.de",
+    "authors": [
+        {
+            "name": "Benjamin Franzke",
+            "email": "bfr@qbus.de",
+            "role": "Developer",
+            "homepage": "https://www.qbus.de"
+        }
+    ],
+    "license": "GPL-2.0+",
+    "require": {
+        "typo3/cms-core": "^7.6.13 || ^8.5.0 || ^9.5.0 || ^10.4.0 || ^11.0.0",
+        "typo3/cms-frontend": "^7.6.13 || ^8.5.0 || ^9.5.0 || ^10.4.0 || ^11.0.0",
+        "typo3/cms-backend": "^7.6.13 || ^8.5.0 || ^9.5.0 || ^10.4.0 || ^11.0.0"
+    },
+    "require-dev": {
+        "helhum/typo3-console": "^4.0.1 || ^5.0 || 6.0.0 || ^7.0",
+        "qbus/cache-status": "^1.2.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "Qbus\\NginxCache\\": "Classes"
+        }
+    },
+    "replace": {
+        "typo3-ter/nginx-cache": "self.version"
+    },
+    "config": {
+        "vendor-dir": ".build/vendor"
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "mkdir -p .build/public/typo3conf/ext/",
+            "[ -L .build/public/typo3conf/ext/nginx_cache ] || ln -snvf ../../../../. .build/public/typo3conf/ext/nginx_cache"
+        ]
+    },
+    "extra": {
+        "typo3/cms": {
+            "todo-remove-ignore-as-root-with-v11.5": true,
+            "ignore-as-root": false,
+            "cms-package-dir": "{$vendor-dir}/typo3/cms",
+            "app-dir": ".build",
+            "web-dir": ".build/public",
+            "extension-key": "nginx_cache"
+        },
+        "helhum/typo3-console": {
+           "install-extension-dummy": false
+        }
+    }
+}
